@@ -1,0 +1,93 @@
+describe('RTMS Product Type Test',()=>{
+    it('shoud enter log in page',()=>{
+        cy.visit('http://localhost/rtms/#/')
+        cy.wait(3000)
+    })
+    it('type wrong number',()=>{
+        cy.wait(3000)
+        cy.get('body').click().type('15',{delay: 10})
+        cy.get('button[class="swal2-confirm swal2-styled"]').should('be.visible').wait(1000).click()
+    })
+    it('type 14 to access RTMS',()=>{
+        cy.wait(3000)
+        cy.get('body').click().type('14',{delay: 10})
+    })
+    it('click at advance option',()=>{
+        cy.get('div[class="home"]').eq(6).should('be.visible').wait(2000).click()
+        cy.wait(1000)
+    })
+    it('click at manage product',()=>{
+        cy.get('div[class="home"]').eq(3).should('be.visible').wait(2000).click()
+        cy.wait(1000)
+    })
+    it('click at product type',()=>{
+        cy.get('div[class="home"]').eq(1).should('be.visible').wait(2000).click()
+        cy.wait(1000)
+    })
+    it('search test001',()=>{
+        cy.get('input[class="form-control"]').should('be.visible').wait(2000).click().type('test001')
+        cy.scrollTo('top')
+        cy.get('button[class="btn btn-info"]').eq(0).should('be.visible').wait(1000).click()
+    })
+    it('add test001',()=>{
+        cy.get('button[class="btn btn-success float-right btn btn-secondary"]').should('be.visible').wait(1000).click()
+        cy.get('input[class="form-control"]').eq(1).should('be.visible').wait(1000).click().type('test001')
+        cy.get('button[class="btn btn-success"]').should('be.visible').wait(1000).click()
+        cy.get('button[class="swal2-confirm swal2-styled"]').should('be.visible').click()
+    })
+    it('search found test001',()=>{
+        cy.get('input[class="form-control"]').should('be.visible').wait(2000).click().type('test001')
+        cy.scrollTo('top')
+        cy.get('button[class="btn btn-info"]').eq(0).should('be.visible').wait(1000).click()
+        cy.get('input[class="form-control"]').should('be.visible').wait(1000).clear()
+        cy.get('button[class="btn btn-info"]').eq(0).should('be.visible').wait(1000).click()
+    })
+    it('check test001 product',()=>{
+        cy.scrollTo('bottom')
+        cy.get('button[class="btn btn-info"]').eq(22).should('be.visible').wait(1000).click()
+        cy.wait(3000)
+        cy.get('button[class="btn btn-success"]').should('be.visible').wait(1000).click()
+        cy.get('button[class="swal2-confirm swal2-styled"]').should('be.visible').click()
+    })
+    it('update test001 to test002',()=>{
+        cy.scrollTo('bottom')
+        cy.get('button[class="btn btn-info"]').eq(22).should('be.visible').wait(1000).click()
+        cy.get('input[class="form-control"]').eq(1).should('be.visible').wait(1000).clear()
+        cy.get('input[class="form-control"]').eq(1).should('be.visible').wait(1000).click().type('test002')
+        cy.get('button[class="btn btn-success"]').should('be.visible').wait(1000).click()
+        cy.get('button[class="swal2-confirm swal2-styled"]').should('be.visible').click()
+    })
+    it('search not found test001',()=>{
+        cy.get('input[class="form-control"]').should('be.visible').wait(2000).click().type('test001')
+        cy.scrollTo('top')
+        cy.get('button[class="btn btn-info"]').eq(0).should('be.visible').wait(1000).click()
+    })
+    it('search found test002',()=>{
+        cy.get('input[class="form-control"]').should('be.visible').wait(1000).clear()
+        cy.get('input[class="form-control"]').should('be.visible').wait(2000).click().type('test002')
+        cy.get('button[class="btn btn-info"]').eq(0).should('be.visible').wait(1000).click()
+        cy.get('input[class="form-control"]').should('be.visible').wait(1000).clear()
+        cy.get('button[class="btn btn-info"]').eq(0).should('be.visible').wait(1000).click()
+    })
+    it('check test002 product',()=>{
+        cy.scrollTo('bottom')
+        cy.get('button[class="btn btn-info"]').eq(22).should('be.visible').wait(1000).click()
+        cy.wait(3000)
+        cy.get('button[class="btn btn-success"]').should('be.visible').wait(1000).click()
+        cy.get('button[class="swal2-confirm swal2-styled"]').should('be.visible').click()
+    })
+    it('delete test002 product',()=>{
+        cy.scrollTo('bottom')
+        cy.get('button[class="btn btn-danger"]').eq(21).should('be.visible').wait(1000).click()
+        cy.get('button[class="swal2-confirm swal2-styled"]').should('be.visible').click()
+        cy.wait(1000)
+        cy.get('button[class="swal2-confirm swal2-styled"]').should('be.visible').click()
+    })
+    it('search not found test002',()=>{
+        cy.get('input[class="form-control"]').should('be.visible').wait(2000).click().type('test002')
+        cy.scrollTo('top')
+        cy.get('button[class="btn btn-info"]').eq(0).should('be.visible').wait(1000).click()
+        cy.get('input[class="form-control"]').should('be.visible').wait(1000).clear()
+        cy.get('button[class="btn btn-info"]').eq(0).should('be.visible').wait(1000).click()
+    })
+})
